@@ -1,0 +1,36 @@
+NAME ACRONYM:
+    Optimization
+    Program for
+    Advancing
+    LIFE
+    
+DESIGN IDEAS:
+- Tool bar with needed tools in each tab instead of big side menu
+
+TO DO LIST:
+--General--
+- Prevent empty data from being added in
+- Feedback/Feature request button
+- Couple contact info
+- Couple history
+- Money stats
+- Search for couples
+
+--Retreat Tab--
++ Reserve car and restaurant and house
++ Fix paid status/prices so they match per retreat
+- can’t have overlapping retreats
+- Allow adjustment of prices.
+- History of past retreats
+- Change max couples according to house
+
+--Couple Tab--
++ Adding potential couples does not assign to retreat
++ “Misc” table, with short description of couple status
+- Change statuses to better reflect actual
+- Make way to make table smaller (mobile friendly)
+
+
+REVAMP OF OPAL
+ - Login with Google API, allows for users and emails.
+ 

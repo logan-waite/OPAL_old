@@ -1,0 +1,188 @@
+body {
+    background-color: deepskyblue;
+}
+.wrapper {
+	margin: 2%;
+    background-color: #f7f7f7;
+    border-radius:10px;
+    overflow: auto;
+}
+.tool-bar {
+   /* padding-left: 10px; */
+}
+.tool-bar .btn {
+    margin-left: 1%;
+}
+button i {
+}
+
+/*************/
+/* Side Menu */
+/*************/
+
+#side-menu {
+	display:block;
+	float:left;
+	width: 200px;
+	height: 100%;
+	margin: 0px 10px;
+	font-size:14px;
+}
+#side-menu * {
+	margin: 0px;
+	padding: 0px;
+}
+#side-menu h4 {
+	margin: 0px;
+	background: linear-gradient(aqua, cornflowerblue); 
+}
+.menu-item a {
+	display:block;
+	height:auto;
+	width:184px;
+	line-height:33px;
+	padding-left:10px;
+	color:#ffffff;
+	text-decoration:none;
+	font-weight: bold;
+}
+
+/*****************/
+/*Retreat tab CSS*/
+/*****************/
+
+.datepicker {
+	width: 100px;
+}
+
+.table {
+    position: relative;
+	float: left;
+	margin: 2px;
+	width: 200px;
+	height: 350px;
+	border: 1px solid green;
+}
+.header {
+	font-weight: bold;
+	text-align: center;
+}
+.name {
+	border: 1px solid blue;
+    padding: 2.5%;
+    font-size: 12pt;
+}
+.reservations {
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    width: 100%
+}
+.icons {
+    display: inline-block;
+    width: 33.3%;
+    height: 36px;
+    cursor: pointer;
+}
+.icons i {
+    padding: 10% 33%;
+}
+.done {
+    background-color: aquamarine;
+}
+
+.not-done {
+    background-color: red;
+}
+
+/*****************/
+/*Couple tab CSS*/
+/*****************/
+
+#coupleTable {
+    margin: 2% auto;
+}
+
+th {
+    text-align: center;
+    border: 1px solid #bbb;
+    padding: 5px;
+}
+
+td {
+    border: 1px solid #bbb;
+    text-align: center;
+    padding: 5px;
+}
+
+#prc {
+    width: 50px;
+}
+.edit {
+    float: right;
+    padding: 0px 10px;
+    cursor: pointer;
+}
+
+.email {
+    margin: 5px;
+    width: 80px;
+}
+
+/************/
+/*Overlay*/
+/************/
+
+div#overlay {
+	display: none;
+	z-index: 2;
+	background: #000;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	text-align: center;
+}
+
+div#specialBox {
+	display: none;
+	position: fixed;
+	z-index: 3;
+	background: #FFF;
+	color: #000;
+    margin-left: 30%;
+    margin-right: auto;
+    border-radius: 12px;
+    background-color: #f7f7f7;
+    min-width: 300px;
+    max-width: 500px;
+    box-shadow:  7px 7px 5px #444;
+}
+
+#closeButton {
+    position: absolute;
+    right: 0px;
+    top: -2px;
+}
+
+#specialBoxWrapper {
+    margin: 10%;
+}
+
+#specialBoxWrapper li {
+    display: inline-block;
+    list-style-type: none;
+    white-space: wrap;
+    padding: 5px;
+    margin: 5px 12px;
+    /* border: 1px solid black; */
+}
+
+#specialBoxWrapper h2 {
+    text-align: center;
+}
+
+#specialBoxWrapper strong {
+    margin-right: 5px;
+}
