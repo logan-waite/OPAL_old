@@ -1,56 +1,67 @@
 <?php
-	
+	if(!empty($_GET['order'])) {
+		if ($_GET['order'] == 'retreat') {
+			$orderby = 'ORDER BY endDate DESC';
+		} elseif ($_GET['order'] == 'name') {
+			$orderby = 'ORDER BY name ASC';
+		} elseif ($_GET['order'] == 'status') {
+			$orderby = 'ORDER BY couple_status.statusID ASC';
+		}
+	} else {
+		$orderby = 'ORDER BY name ASC';
+	}
+
 	$coupleQuery = mysqli_query($link, "SELECT couples.*, couple_status.*, retreats.*, places.*
-									FROM couples 
+									FROM couples
 										JOIN couple_status ON couples.statusID = couple_status.statusID
 										LEFT JOIN retreats ON couples.retreatID = retreats.retreatID
 										LEFT JOIN places ON retreats.placeID = places.placeID
 									WHERE endDate > CURDATE() OR couples.retreatID = '0'
-									ORDER BY name ASC");		
+									$orderby");
 
 echo "<table id='coupleTable'>";
 	echo "<tr>
-			<th>Name</th>
-			<th>Retreat</th>
-            <th>Status</th>
+			<th><a href='?order=name#couple-tab'>Name <i class='fa fa-chevron-down'></i></a></th>
+			<th><a href='?order=retreat#couple-tab'>Retreat <i class='fa fa-chevron-down'></i></a></th>
+            <th><a href='?order=status#couple-tab'>Status <i class='fa fa-chevron-down'></i></a></th>
 			<th>Paid Status</th>
 <!--			<th>Amount Paid</th> -->
 			<th>Emails</th>
 			<th id='prc'>Pre-Retreat Call</th>
 			<th>Notes</th>
 		</th>";
-	
+
 		$num = 0;
 
     while ($couples = mysqli_fetch_array($coupleQuery)) {
-	
-        $num++; 
+
+        $num++;
         $stDate = strtotime($couples['startDate']);
 		$fStDate = date("M d", $stDate);
         $retreatInfo = '';
-    
+
         // Check Private Retreat
         if ($couples['private'] == 1) {
 			$private = "(Private)";
 		} else {
 			$private = '';
 		};
-        
+
         // Check if couple is assigned to retreat
         if (!empty($couples['retreatID'])) {
             $retreatInfo = $couples['place']." $private -- ".$fStDate;
         } else {
             $retreatInfo = "Not Assigned";
         };
-		
+
 		if ($couples['preRetreatCall'] == 1) {
 			$call_status = 'btn-success';
 		} else {
 			$call_status = 'btn-danger';
 		};
-				
+
 		// Determine Full Price of retreats
-			
+
 		if ($couples['placeID'] == 1 && $couples['private'] == 0) { 	//Sundance not private
 			$retreatPrice = 3395;
 		} elseif ($couples['placeID'] == 2 && $couples['private'] == 0) {	//San Diego not private
@@ -64,12 +75,12 @@ echo "<table id='coupleTable'>";
 		} elseif ($couples['placeID'] == 3 && $couples['private'] == 1) {	//Texas Hill Country Private
 			$retreatPrice = 10995;
 		};
-		
+
 		$coupleID = $couples['coupleID'];
-		$paidQuery = mysqli_query($link, "SELECT * FROM paid_status 
+		$paidQuery = mysqli_query($link, "SELECT * FROM paid_status
 									JOIN pay_type ON paid_status.payTypeID = pay_type.payTypeID
 									WHERE coupleID = '$coupleID'");
-		
+
 		$paymentStatus = '';
 		$totalAmountPaid = 0.00;
         $statusAlert = '';
@@ -79,7 +90,7 @@ echo "<table id='coupleTable'>";
         while ($status = mysqli_fetch_array($paidQuery)) {
 			$amountPaid = $status['amountPaid'];
 			$totalAmountPaid = $totalAmountPaid + $amountPaid;
-            
+
 			if ($status['payTypeID'] == '3') {
                 $statusAlert = 'Paid in Full';
                 $buttonType = 'btn-success';
@@ -87,39 +98,39 @@ echo "<table id='coupleTable'>";
                 $statusAlert = 'Add Payment';
                 $buttonType = 'btn-info';
             };
-        
+
 //            $statusAlert = $status['payType'];
-            
+
         };
-        
+
         if (empty($statusAlert)) {
             $statusAlert = 'Make Deposit';
         };
         if (empty($buttonType)) {
-            $buttonType = 'btn-danger';  
+            $buttonType = 'btn-danger';
         };
-	
+
        // Check info email
         if ($couples['infoEmail'] == 1) {
             $infoEmail = "<button class='email btn btn-success'><i class='fa fa-check'></i>&nbsp Info</button>";
         } else {
             $infoEmail = "<button class='email btn btn-danger' onClick='email(1, $coupleID,this)'><i class='fa fa-times'>&nbsp</i> Info</button>";
         };
-        
+
         // Check final email
         if ($couples['finalEmail'] == 1) {
             $finalEmail = "<button class='email btn btn-success'><i class='fa fa-check'></i>&nbsp Final</button>";
         } else {
             $finalEmail = "<button class='email btn btn-danger' onClick='email(2, $coupleID,this)'><i class='fa fa-times'></i>&nbsp Final</button>";
         };
-        
+
         // Check misc email
         if ($couples['miscEmail'] == 1) {
             $miscEmail = "<div class='email'><i class='fa fa-check'></i></div>";
         } else {
             $miscEmail = "<div class='email'><i class='fa fa-times' onClick='email(3, $coupleID,this)'></i></div>";
         };
-        
+
 		echo "<tr>
             <!--Edit button for form-->
 			<td>".$couples['name']."
@@ -150,7 +161,7 @@ echo "<table id='coupleTable'>";
 //				<input type='submit' value='View'>
 //				</form></td>";
 		echo "</tr>";
-	
+
 	};
 	echo "</table>";
 ?>
