@@ -1,7 +1,7 @@
 <?php
 	if(!empty($_GET['order'])) {
 		if ($_GET['order'] == 'retreat') {
-			$orderby = 'ORDER BY endDate DESC';
+			$orderby = 'ORDER BY sortColumn ASC, couples.retreatID DESC, couples.name';
 		} elseif ($_GET['order'] == 'name') {
 			$orderby = 'ORDER BY name ASC';
 		} elseif ($_GET['order'] == 'status') {
@@ -11,7 +11,22 @@
 		$orderby = 'ORDER BY name ASC';
 	}
 
-	$coupleQuery = mysqli_query($link, "SELECT couples.*, couple_status.*, retreats.*, places.*
+	$coupleQuery = mysqli_query($link, "SELECT couples.name,
+		couples.retreatID,
+		couples.preRetreatCall,
+        couples.infoEmail,
+        couples.finalEmail,
+        couples.shortDescript,
+        couple_status.status,
+        retreats.startDate,
+        retreats.endDate,
+        retreats.private,
+        retreats.carReserved,
+        retreats.houseReserved,
+        retreats.restReserved,
+        places.place,
+        places.maxCouples,
+        IFNULL(retreats.endDate, adddate(curdate(), 1460)) as sortColumn
 									FROM couples
 										JOIN couple_status ON couples.statusID = couple_status.statusID
 										LEFT JOIN retreats ON couples.retreatID = retreats.retreatID
