@@ -11,7 +11,8 @@
 		$orderby = 'ORDER BY name ASC';
 	}
 
-	$coupleQuery = mysqli_query($link, "SELECT couples.name,
+	$coupleQuery = mysqli_query($link, "SELECT couples.coupleID,
+        couples.name,
 		couples.retreatID,
 		couples.preRetreatCall,
         couples.infoEmail,
@@ -31,7 +32,7 @@
 										JOIN couple_status ON couples.statusID = couple_status.statusID
 										LEFT JOIN retreats ON couples.retreatID = retreats.retreatID
 										LEFT JOIN places ON retreats.placeID = places.placeID
-									WHERE endDate > CURDATE() OR couples.retreatID = '0'
+									WHERE endDate > CURDATE() OR couples.retreatID = '0' AND couples.statusID <> 4
 									$orderby");
 
 echo "<table id='coupleTable'>";

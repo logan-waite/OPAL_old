@@ -76,6 +76,3 @@ function sendOverlay(formID, url, tab) {
     });
 }
 
-function sortBy(field) {
-    
-}

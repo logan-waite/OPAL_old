@@ -13,6 +13,18 @@
        ON retreats.placeID = places.placeID");
 
 	while($retreat = mysqli_fetch_array($retreatQuery)){
+       
+        // If couple cancels
+        if ($statusID = 4) {
+            $sql = mysqli_query ($link, "UPDATE couples SET
+                                name = '$coupleName',
+                                retreatID = '0',
+                                statusID = '4'
+                                WHERE coupleID = '$coupleID'");
+            echo "Couple canceled!";
+            exit;
+        }
+        
         // If couple is potential
         if ($retreatID == 0) {
             $sql = mysqli_query ($link, "UPDATE couples SET
@@ -23,6 +35,8 @@
             echo "Couple updated!";
             exit;
         };
+        
+
         
         // Assign to retreat
 		if ($retreat['retreatID'] == $retreatID) {
