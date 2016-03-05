@@ -18,6 +18,7 @@
         couples.infoEmail,
         couples.finalEmail,
         couples.shortDescript,
+        couples.miscEmail,
         couple_status.status,
         retreats.startDate,
         retreats.endDate,
@@ -25,6 +26,7 @@
         retreats.carReserved,
         retreats.houseReserved,
         retreats.restReserved,
+        places.placeID,
         places.place,
         places.maxCouples,
         IFNULL(retreats.endDate, adddate(curdate(), 1460)) as sortColumn
@@ -158,11 +160,11 @@ echo "<table id='coupleTable'>";
                 <button type='button' class='btn $buttonType navbar-btn' onclick=\"coupleButton('make_payment_form.php','$coupleID')\">
                         <i class='fa fa-credit-card fa-lg'></i>&nbsp $statusAlert
                     </button></td>
-<!--			<td>$totalAmountPaid / $retreatPrice</td>    -->
 			<td>$infoEmail $finalEmail</td>
             <td><button class='btn $call_status' onClick=\"callStatus($coupleID,this)\"><i class='fa fa-phone fa-lg'></i></button></td>
             <td><button class='btn btn-default' onClick=\"coupleButton('view_notes.php', $coupleID)\"><i class='fa fa-sticky-note-o fa-lg'></i></button></td>
             ";
+//<!--			<td>$totalAmountPaid / $retreatPrice</td>    -->
 //        echo "<form action='update_call.php' method='post'>
 //				<input type='hidden' value='$coupleID' name='coupleID'>
 //				<input type='submit' name='updateCall' value='' style='width=2em; height=2em;";
