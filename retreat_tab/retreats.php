@@ -15,6 +15,8 @@
         $retreat = $retreats['retreatID']; 
         //Determine if retreat is private
 		$private = $retreats['private']; 
+        // Determin if retreat is advanced
+        $advanced = $retreats['advanced'];
 		//Pick only the couples for this retreat.
         $coupleList = mysqli_query($link, "SELECT coupleID, name, statusID FROM couples 
 									WHERE couples.retreatID = ".$retreat."&& couples.statusID IN (2,3)"); 
@@ -30,12 +32,21 @@
 		echo "<div class='header'>".$retreats['place']."</div><div class='header'>".$fStDate." to ".$fEndDate."</div>" ;
 
 		// Tell user if retreat is private
-		if ($private == 1) {
-			echo "<div class='header'>Private</div>";
-		} else {
+		if ($private == 1 && $advanced == 1) {
+			echo "<div class='header'>Private / Advanced</div>";
+		} else if ($private == 1 || $advanced == 1) {
+            if ($private == 1) {
+                echo "<div class='header'>Private</div>";
+            } else if ($advanced == 1) {
+                echo "<div class='header'>Advanced</div>";
+            } else {
+                echo "</br>";
+            }
+        } else {
 			echo "</br>";
 		};
-			
+		
+        echo "<div class='couple-wrapper'>";
         //loop couples attending
 		while ($couple = mysqli_fetch_array($coupleList)) { 
             $numCouples++;
@@ -51,6 +62,7 @@
             echo "</div>";
 		};
 
+        echo "</div>";
         // Check car
         if ($retreats['carReserved'] == 1) {
             $isDone1 = 'btn-success';

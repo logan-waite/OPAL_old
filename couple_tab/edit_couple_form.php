@@ -17,7 +17,7 @@
   
 		$couple = mysqli_fetch_array($coupleQuery);
         $selected = '';
-        echo "<li><strong>Couple: </strong><input type='text' name='coupleName' required value='".$couple[name]."' style='width: 200px;'></input></li>";
+        echo "<li><strong>Couple: </strong><input type='text' name='coupleName' required value='".$couple['name']."' style='width: 200px;'></input></li>";
         echo "<li><strong>Retreat: </strong>";
 		echo "<select name='retreat'>";
         echo "<option value='0'>Not Assigned</option>";

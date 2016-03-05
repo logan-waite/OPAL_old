@@ -62,6 +62,11 @@ button i {
 	width: 200px;
 	height: 350px;
 	border: 1px solid green;
+    overflow: auto;
+}
+.couple-wrapper {
+    height: 250px;
+    overflow: auto;
 }
 .header {
 	font-weight: bold;
@@ -75,7 +80,7 @@ button i {
 .reservations {
     display: block;
     position: absolute;
-    bottom: 0px;
+    bottom: 5px;
     width: 100%
 }
 .icons {

@@ -4,7 +4,7 @@
 <?php
 //    Creates table of couples that are not assigned to a retreat
     
-    $coupleList = mysqli_query($link, "SELECT * FROM couples WHERE retreatID = '0'");
+    $coupleList = mysqli_query($link, "SELECT * FROM couples WHERE retreatID = '0' ORDER BY name");
     
     while ($couple = mysqli_fetch_array($coupleList)) {
         $coupleID = $couple['coupleID'];

@@ -12,10 +12,8 @@
 	$retreatQuery = mysqli_query($link, "SELECT * FROM retreats LEFT JOIN places
        ON retreats.placeID = places.placeID");
 
-	while($retreat = mysqli_fetch_array($retreatQuery)){
-       
         // If couple cancels
-        if ($statusID = 4) {
+        if ($statusID == 4) {
             $sql = mysqli_query ($link, "UPDATE couples SET
                                 name = '$coupleName',
                                 retreatID = '0',
@@ -26,26 +24,25 @@
         }
         
         // If couple is potential
-        if ($retreatID == 0) {
+        if ($statusID == 1) {
             $sql = mysqli_query ($link, "UPDATE couples SET
                                 name = '$coupleName',
-                                retreatID = '$retreatID',
+                                retreatID = '0',
                                 statusID = '1'
                                 WHERE coupleID = '$coupleID'");
             echo "Couple updated!";
             exit;
-        };
-        
+        }
 
-        
+	while($retreat = mysqli_fetch_array($retreatQuery)){
+               
         // Assign to retreat
 		if ($retreat['retreatID'] == $retreatID) {
 			$coupleQuery = mysqli_query($link, "SELECT coupleID, name FROM couples 
 									WHERE couples.retreatID = ".$retreatID);
             // Check if retreat is private
-            $private = FALSE;
             if ($retreat['private'] == 1) {
-				$private = TRUE;
+				$maxCouples = 1;
             } else {	
 				$maxCouples = $retreat['maxCouples'];
 			};
@@ -55,7 +52,7 @@
             while ($couple = mysqli_fetch_array($coupleQuery)) {
 				$numCouples++;
 			};
-			if ($private || $numCouples > $maxCouples) {
+			if ($numCouples >= $maxCouples) {
 				echo "Retreat is full!";
 				exit;
 			} elseif ($numCouples <= $maxCouples) {

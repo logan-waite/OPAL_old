@@ -32,5 +32,7 @@ Form submits to add_retreat.php
 	
     <li><strong>Private: </strong>
         <input type='checkbox' value='1' name='private' style='margin:0'></li><br>
+    <li><strong>Advanced: </strong>
+        <input type='checkbox' value='1' name='advanced' style='margin:0'></li><br>
     <li><input type='submit' value='Submit'></li>
 </form>

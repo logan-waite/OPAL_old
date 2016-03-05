@@ -30,9 +30,8 @@
 			$coupleList = mysqli_query($link, "SELECT coupleID, name FROM couples 
 									WHERE couples.retreatID = ".$retreatID);
             // Check if retreat is private
-            $private = FALSE;
             if ($row['private'] == 1) {
-				$private = TRUE;
+				$maxCouples - 1;
             } else {	
                 $maxCouples = $row['maxCouples'];
                 
@@ -43,7 +42,7 @@
             while ($row = mysqli_fetch_array($coupleList)) {
                 $numCouples++;
 			};
-			if ($private || $numCouples > $maxCouples) {
+			if ($numCouples >= $maxCouples) {
 				echo "Retreat is full!";
 				exit;
 			} else if ($numCouples <= $maxCouples) {
