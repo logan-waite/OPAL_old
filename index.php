@@ -1,11 +1,11 @@
-<link rel="stylesheet" href='../resources/bootstrap/css/bootstrap.min.css'>
-<link rel='stylesheet' href='../resources/bootstrap/css/bootstrap-theme.min.css'>
-<link rel='stylesheet' href='../resources/font-awesome-4.4.0/css/font-awesome.min.css'>
-<link rel='stylesheet' href='../resources/jquery/jquery-ui-1.11.4/jquery-ui.min.css'>
+<link rel="stylesheet" href='resources/bootstrap/css/bootstrap.min.css'>
+<link rel='stylesheet' href='resources/bootstrap/css/bootstrap-theme.min.css'>
+<link rel='stylesheet' href='resources/font-awesome-4.4.0/css/font-awesome.min.css'>
+<link rel='stylesheet' href='resources/jquery/jquery-ui-1.11.4/jquery-ui.min.css'>
 <link rel='stylesheet' href='resources/stylesheet.css'>
-<script src='../resources/bootstrap/js/jquery.min.js'></script>
-<script src='../resources/jquery/jquery-ui-1.11.4/jquery-ui.min.js'></script>
-<script src='../resources/bootstrap/js/bootstrap.min.js'></script>
+<script src='resources/bootstrap/js/jquery.min.js'></script>
+<script src='resources/jquery/jquery-ui-1.11.4/jquery-ui.min.js'></script>
+<script src='resources/bootstrap/js/bootstrap.min.js'></script>
 <script src='resources/jquery-stickytabs.js'></script>
 <script src='resources/javascript.js'></script>
 <link rel="icon" href="resources/img/LIFE_logo_196.png">
